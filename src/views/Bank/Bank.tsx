@@ -30,19 +30,17 @@ const useStyles = makeStyles((theme) => ({
 const Bank: React.FC = () => {
   useEffect(() => window.scrollTo(0, 0));
   const classes = useStyles();
-  const { bankId } = useParams();
+  const { bankId } = useParams<{ bankId: string }>();
   const bank = useBank(bankId);
 
   const { account } = useWallet();
   const { onRedeem } = useRedeem(bank);
   const statsOnPool = useStatsForPool(bank);
+
+  const test = <PageHeader icon="🏦" subtitle={`Deposit ${bank?.depositTokenName} and earn ${bank?.earnTokenName}`} title={bank?.name}/>;
+
   return account && bank ? (
     <>
-      <PageHeader
-        icon="🏦"
-        subtitle={`Deposit ${bank?.depositTokenName} and earn ${bank?.earnTokenName}`}
-        title={bank?.name}
-      />
       <Box>
         <Grid container justify="center" spacing={3} style={{ marginBottom: '50px' }}>
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>

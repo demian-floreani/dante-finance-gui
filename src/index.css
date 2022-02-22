@@ -5,12 +5,23 @@ h2,
 h3,
 h4 {
   margin: 0;
-  font-family: 'Poppins', sans-serif !important;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Arial';
+}
+
+h2 {
+  font-size: 2.5em !important;
+}
+
+p {
+  font-size: 1.5em !important;
+}
+
+@font-face {
+  font-family: 'testfont';
+  font-weight: 'normal';
+  src: url("assets/fonts/enchanted.otf") format("opentype");
 }
 
 html,
@@ -19,12 +30,16 @@ body {
   height: 100%;
 }
 
+.MuiPaper-root {
+  background-color: rgba(104, 76, 172, 0.9) !important;
+}
+
 .makeStyles-paper-11,
 .makeStyles-paper-11 h2,
 .MuiTypography-body1,
 .MuiPaper-root,
 .MuiPaper-root h2 {
-  color: #2c2560 !important;
+  color: #FFFFFF !important;
 }
 
 body {
@@ -39,13 +54,14 @@ body {
   background-size: cover !important;
 }
 
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: 'Amarante', cursive !important;
+  
 }
 
 footer .a:hover {

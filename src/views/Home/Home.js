@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Page from '../../components/Page';
-import HomeImage from '../../assets/img/home.png';
-import CashImage from '../../assets/img/crypto_tomb_cash.svg';
+import HomeImage from '../../assets/img/HOME1900x1080.png';
+import CashImage from '../../assets/img/dante.svg';
 import Image from 'material-ui-image';
 import { createGlobalStyle } from 'styled-components';
 import CountUp from 'react-countup';
@@ -14,8 +14,8 @@ import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
 import usetShareStats from '../../hooks/usetShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
-import { tomb as tombTesting, tShare as tShareTesting } from '../../tomb-finance/deployments/deployments.testing.json';
-import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.mainnet.json';
+import { Dante as tombTesting, Grail as tShareTesting } from '../../tomb-finance/deployments/deployments.testing.json';
+import { Dante as tombProd, Grail as tShareProd } from '../../tomb-finance/deployments/deployments.testing.json';
 
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 
@@ -24,6 +24,7 @@ import ZapModal from '../Bank/components/ZapModal';
 
 import { makeStyles } from '@material-ui/core/styles';
 import useTombFinance from '../../hooks/useTombFinance';
+
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -125,6 +126,8 @@ const Home = () => {
     />,
   );
 
+  const hStyle = { color: 'red' };
+
   return (
     <Page>
       <BackgroundImage />
@@ -136,21 +139,18 @@ const Home = () => {
         </Grid>
         {/* Explanation text */}
         <Grid item xs={12} sm={8}>
-          <Paper>
+          <Paper className='danteCard'>
             <Box p={4}>
-              <h2>Welcome to Tomb Finance</h2>
-              <p>The first algorithmic stablecoin on Fantom Opera, pegged to the price of 1 FTM via seigniorage.</p>
-              <p>
-                Stake your TSHARE in the Masonry to earn inflationary TOMB rewards or provide liquidity on pairs and
-                start earning today!
-              </p>
+              <h2 style={{ color: 'red'}}>Welcome to Dante Finance</h2>
+              <p>Join Dante's epic journey from Inferno to Eden. $DANTE is a new token pegged to $TOMB with future NFT utility.</p>
+              <p>Stake your GRAIL in Eden to earn inflationary DANTE rewards or provide liquidity on pairs and start earning today!</p>
             </Box>
           </Paper>
         </Grid>
 
         {/* TVL */}
         <Grid item xs={12} sm={4}>
-          <Card>
+          <Card className='danteCard'>
             <CardContent align="center">
               <h2>Total Value Locked</h2>
               <CountUp style={{ fontSize: '25px' }} end={TVL} separator="," prefix="$" />
@@ -158,9 +158,11 @@ const Home = () => {
           </Card>
         </Grid>
 
+        
+
         {/* Wallet */}
         <Grid item xs={12} sm={8}>
-          <Card style={{ height: '100%' }}>
+          <Card className='danteCard' style={{ height: '100%' }}>
             <CardContent align="center" style={{ marginTop: '2.5%' }}>
               {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
               <Button color="primary" href="/masonry" variant="contained" style={{ marginRight: '10px' }}>
@@ -187,12 +189,12 @@ const Home = () => {
 
         {/* TOMB */}
         <Grid item xs={12} sm={4}>
-          <Card>
+          <Card className='danteCard'>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>TOMB</h2>
+              <h2>DANTE</h2>
               <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TOMB');
+                  tombFinance.watchAssetInMetamask('DANTE');
                 }}
                 color="primary"
                 variant="outlined"
@@ -202,13 +204,11 @@ const Home = () => {
                 <img alt="metamask fox" style={{ width: '20px' }} src={MetamaskFox} />
               </Button>
               <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="TOMB" />
-                </CardIcon>
+                <TokenSymbol symbol="DANTE" />
               </Box>
               Current Price
               <Box>
-                <span style={{ fontSize: '30px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.--'} FTM</span>
+                <span style={{ fontSize: '30px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.--'} TOMB</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>
@@ -226,9 +226,9 @@ const Home = () => {
 
         {/* TSHARE */}
         <Grid item xs={12} sm={4}>
-          <Card>
+          <Card className='danteCard'>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>TSHARE</h2>
+              <h2>GRAIL</h2>
               <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('TSHARE');
@@ -241,9 +241,7 @@ const Home = () => {
                 <img alt="metamask fox" style={{ width: '20px' }} src={MetamaskFox} />
               </Button>
               <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="TSHARE" />
-                </CardIcon>
+                <TokenSymbol symbol="GRAIL" />
               </Box>
               Current Price
               <Box>
@@ -263,9 +261,9 @@ const Home = () => {
 
         {/* TBOND */}
         <Grid item xs={12} sm={4}>
-          <Card>
+          <Card className='danteCard'>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>TBOND</h2>
+              <h2>DBOND</h2>
               <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('TBOND');
@@ -278,9 +276,7 @@ const Home = () => {
                 <img alt="metamask fox" style={{ width: '20px' }} src={MetamaskFox} />
               </Button>
               <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="TBOND" />
-                </CardIcon>
+                <TokenSymbol symbol="DBOND" />
               </Box>
               Current Price
               <Box>
@@ -298,13 +294,11 @@ const Home = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Card>
+          <Card className='danteCard'>
             <CardContent align="center">
-              <h2>TOMB-FTM Spooky LP</h2>
+              <h2>DANTE-TOMB Spooky LP</h2>
               <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="TOMB-FTM-LP" />
-                </CardIcon>
+                <TokenSymbol symbol="TOMB-FTM-LP" />
               </Box>
               <Box mt={2}>
                 <Button color="primary" onClick={onPresentTombZap} variant="contained">
@@ -326,13 +320,11 @@ const Home = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Card>
+          <Card className='danteCard'>
             <CardContent align="center">
-              <h2>TSHARE-FTM Spooky LP</h2>
+              <h2>GRAIL-FTM Spooky LP</h2>
               <Box mt={2}>
-                <CardIcon>
-                  <TokenSymbol symbol="TSHARE-FTM-LP" />
-                </CardIcon>
+                <TokenSymbol symbol="TSHARE-FTM-LP" />
               </Box>
               <Box mt={2}>
                 <Button

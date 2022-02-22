@@ -95,30 +95,15 @@ const Nav = () => {
         {matches ? (
           <>
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-              {/* <a className={ classes.brandLink } href="/">Tomb Finance</a> */}
-              <Link to="/" color="inherit" className={classes.brandLink}>
-                Tomb Finance
-              </Link>
+              <Link to="/" color="inherit" className={classes.brandLink}>Dante Finance</Link>
             </Typography>
             <Box mr={5}>
-              <Link color="textPrimary" to="/" className={classes.link}>
-                Home
-              </Link>
-              <Link color="textPrimary" to="/cemetery" className={classes.link}>
-                Cemetery
-              </Link>
-              <Link color="textPrimary" to="/masonry" className={classes.link}>
-                Masonry
-              </Link>
-              <Link color="textPrimary" to="/pit" className={classes.link}>
-                Pit
-              </Link>
-              <Link color="textPrimary" to="/regulations" className={classes.link}>
-                Regulations
-              </Link>
-              <a href="https://docs.tomb.finance" className={classes.link}>
-                Docs
-              </a>
+              <Link color="textPrimary" to="/" className={classes.link}>Home</Link>
+              <Link color="textPrimary" to="/cemetery" className={classes.link}>Purgatory</Link>
+              <Link color="textPrimary" to="/masonry" className={classes.link}>Eden</Link>
+              <Link color="textPrimary" to="/pit" className={classes.link}>Inferno</Link>
+              <Link color="textPrimary" to="/regulations" className={classes.link}>Regulations</Link>
+              <a href="https://docs.tomb.finance" className={classes.link}>Docs</a>
             </Box>
             <AccountButton text="Connect" />
           </>

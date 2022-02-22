@@ -404,7 +404,7 @@
       }
     ]
   },
-  "tomb": {
+  "Dante": {
     "address": "0xC5c34B7BA55692DDFe30C2D98C7316DF57d24528",
     "abi": [
       {
@@ -911,7 +911,7 @@
       }
     ]
   },
-  "tShare": {
+  "Grail": {
     "address": "0x2097eee5a2e374240e29092c2bed67d531432fd9",
     "abi": [
       {
@@ -1612,7 +1612,7 @@
       }
     ]
   },
-  "tBond": {
+  "DBond": {
     "address": "0xa354AecacCc6345EEe79Eb7E6Ca261EA439DdEf4",
     "abi": [
       {
@@ -3841,7 +3841,7 @@
       }
     ]
   },
-  "TombFtmRewardPool": {
+  "DanteTombRewardPool": {
     "address": "0xf477FAcac0343823984b3D231f37E342628E5eeD",
     "abi": [
       {
@@ -4345,7 +4345,7 @@
       }
     ]
   },
-  "TombFtmLPTShareRewardPool": {
+  "DanteTombLPGrailRewardPool": {
     "address": "0xf54f75C6dfa4C5AdA67927C7c816E563327A3b51",
     "abi": [
       {
