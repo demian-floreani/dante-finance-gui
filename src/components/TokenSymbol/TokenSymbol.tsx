@@ -15,6 +15,14 @@ import booLogo from '../../assets/img/spooky.png';
 import zooLogo from '../../assets/img/zoo_logo.svg';
 import shibaLogo from '../../assets/img/shiba_logo.svg';
 
+import danteLogo from '../../assets/img/dante.svg';
+import grailLogo from '../../assets/img/grail.svg';
+import dbondLogo from '../../assets/img/dbond.svg';
+import danteTombLpLogo from '../../assets/img/dante_tomb.svg';
+import grailFtmLpLogo from '../../assets/img/grail_ftm.svg';
+import danteLogoPNG from '../../assets/img/dante_500x500.png';
+
+
 const logosBySymbol: { [title: string]: string } = {
   //Real tokens
   //=====================
@@ -24,11 +32,15 @@ const logosBySymbol: { [title: string]: string } = {
   TSHARE: tShareLogo,
   TBOND: tBondLogo,
   WFTM: wftmLogo,
-  BOO: booLogo,
-  SHIBA: shibaLogo,
-  ZOO: zooLogo,
-  'TOMB-FTM-LP': tombFtmLpLogo,
-  'TSHARE-FTM-LP': tshareFtmLpLogo,
+  //BOO: booLogo,
+  //SHIBA: shibaLogo,
+  //ZOO: zooLogo,
+  'TOMB-FTM-LP': danteTombLpLogo,
+  'TSHARE-FTM-LP': grailFtmLpLogo,
+
+  DANTE: danteLogo,
+  GRAIL: grailLogo,
+  DBOND: dbondLogo,
 };
 
 type LogoProps = {
@@ -36,7 +48,7 @@ type LogoProps = {
   size?: number;
 };
 
-const TokenSymbol: React.FC<LogoProps> = ({ symbol, size = 64 }) => {
+const TokenSymbol: React.FC<LogoProps> = ({ symbol, size = 100 }) => {
   if (!logosBySymbol[symbol]) {
     throw new Error(`Invalid Token Logo symbol: ${symbol}`);
   }

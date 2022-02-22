@@ -1,6 +1,3 @@
-// import { Fetcher, Route, Token } from '@uniswap/sdk';
-//import { Fetcher as FetcherSpirit, Token as TokenSpirit } from '@spiritswap/sdk';
-//import { Fetcher, Route, Token } from '@spookyswap/sdk';
 import { ChainId, Fetcher, Route, Token, Pair, TokenAmount } from '@ac32/spookyswap-sdk';
 import { Configuration } from './config';
 import { ContractName, TokenStat, AllocationTime, LPStat, Bank, PoolStats } from './types';
@@ -16,8 +13,6 @@ import moment from 'moment';
 import { parseUnits } from 'ethers/lib/utils';
 import { FTM_TICKER, SPOOKY_ROUTER_ADDR, TOMB_TICKER } from '../utils/constants';
 import { abi as IUniswapV2Pair } from './IUniswapV2Pair.json'
-
-///import { abi as IUniswapV2Pair } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 
 /**
  * An API module of Tomb Finance contracts.
@@ -53,14 +48,14 @@ export class TombFinance {
     for (const [symbol, [address, decimal]] of Object.entries(externalTokens)) {
       this.externalTokens[symbol] = new ERC20(address, provider, symbol, decimal);
     }
-    this.TOMB = new ERC20(deployments.tomb.address, provider, 'TOMB', 18);
-    this.TSHARE = new ERC20(deployments.tShare.address, provider, 'TSHARE', 18);
-    this.TBOND = new ERC20(deployments.tBond.address, provider, 'TBOND', 18);
+    this.TOMB = new ERC20(deployments.Dante.address, provider, 'DANTE', 18);
+    this.TSHARE = new ERC20(deployments.Grail.address, provider, 'GRAIL', 18);
+    this.TBOND = new ERC20(deployments.DBond.address, provider, 'DBOND', 18);
 
     this.TOMB_2 = this.externalTokens['TOMB_2'];
     this.FTM = this.externalTokens['WFTM'];
 
-    // Uniswap V2 Pair
+    // Uniswap V2 Pairt
     this.TOMBWFTM_LP = new Contract(externalTokens['TOMB-FTM-LP'][0], IUniswapV2PairABI, provider);
 
     this.config = cfg;
@@ -103,9 +98,9 @@ export class TombFinance {
   //===================================================================
 
   async getTombStat(): Promise<TokenStat> {
-    const { TombFtmRewardPool } = this.contracts;
+    const { DanteTombRewardPool } = this.contracts;
     const supply = await this.TOMB.totalSupply();
-    const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
+    const tombRewardPoolSupply = await this.TOMB.balanceOf(DanteTombRewardPool.address);
     //const tombRewardPoolSupply2 = await this.TOMB.balanceOf(TombFtmLpTombRewardPool.address);
     //const tombRewardPoolSupplyOld = await this.TOMB.balanceOf(TombFtmLpTombRewardPoolOld.address);
     const tombCirculatingSupply = supply
@@ -219,7 +214,7 @@ export class TombFinance {
    * CirculatingSupply (always equal to total supply for bonds)
    */
   async getShareStat(): Promise<TokenStat> {
-    const { TombFtmLPTShareRewardPool } = this.contracts;
+    const { DanteTombLPGrailRewardPool } = this.contracts;
 
     const supply = await this.TSHARE.totalSupply();
 
@@ -228,9 +223,9 @@ export class TombFinance {
       this.TSHARE,
       this.externalTokens['TSHARE-FTM-LP'].address);
     
-    //const tombRewardPoolSupply = await this.TSHARE.balanceOf(TombFtmLPTShareRewardPool.address);
+    const rewardPool = await this.TSHARE.balanceOf(DanteTombLPGrailRewardPool.address);
     
-    const tShareCirculatingSupply = supply;//.sub(tombRewardPoolSupply);
+    const tShareCirculatingSupply = supply.sub(rewardPool);
     const priceOfOneFTM = await this.getWFTMPriceFromPancakeswap();
     const priceOfSharesInDollars = (Number(priceInFTM) * Number(priceOfOneFTM)).toFixed(2);
 
@@ -243,11 +238,11 @@ export class TombFinance {
   }
 
   async getTombStatInEstimatedTWAP(): Promise<TokenStat> {
-    const { SeigniorageOracle, TombFtmRewardPool } = this.contracts;
+    const { SeigniorageOracle, DanteTombRewardPool } = this.contracts;
     const expectedPrice = await SeigniorageOracle.twap(this.TOMB.address, ethers.utils.parseEther('1'));
 
     const supply = await this.TOMB.totalSupply();
-    const tombRewardPoolSupply = await this.TOMB.balanceOf(TombFtmRewardPool.address);
+    const tombRewardPoolSupply = await this.TOMB.balanceOf(DanteTombRewardPool.address);
     const tombCirculatingSupply = supply.sub(tombRewardPoolSupply);
     return {
       tokenInFtm: getDisplayBalance(expectedPrice),
@@ -259,7 +254,7 @@ export class TombFinance {
 
   async getTombPriceInLastTWAP(): Promise<BigNumber> {
     const { Treasury } = this.contracts;
-    return Treasury.getTombUpdatedPrice();
+    return Treasury.getDanteUpdatedPrice();
   }
 
   /**
@@ -311,32 +306,20 @@ export class TombFinance {
     depositTokenName: string,
   ) {
     if (earnTokenName === 'TOMB') {
-      if (!contractName.endsWith('TombRewardPool')) {
-        const rewardPerSecond = await poolContract.dantePerSecond();
-        if (depositTokenName === 'WFTM') {
-          return rewardPerSecond;
-        } /*else if (depositTokenName === 'BOO') {
-          return rewardPerSecond.mul(2500).div(11000).div(24);
-        } else if (depositTokenName === 'ZOO') {
-          return rewardPerSecond.mul(1000).div(11000).div(24);
-        } else if (depositTokenName === 'SHIBA') {
-          return rewardPerSecond.mul(1500).div(11000).div(24);
-        }*/
+      const rewardPerSecond = await poolContract.dantePerSecond();
+
+      // calculate reward per second based on deposit token allocation
+      if (depositTokenName === 'WFTM') {
         return rewardPerSecond;
       }
-      const poolStartTime = await poolContract.poolStartTime();
-      const startDateTime = new Date(poolStartTime.toNumber() * 1000);
-      const FOUR_DAYS = 4 * 24 * 60 * 60 * 1000;
-      if (Date.now() - startDateTime.getTime() > FOUR_DAYS) {
-        return await poolContract.epochTombPerSecond(1);
-      }
-      return await poolContract.epochTombPerSecond(0);
-    }
-    const rewardPerSecond = await poolContract.tSharePerSecond();
-    if (depositTokenName.startsWith('TOMB')) {
-      return rewardPerSecond.mul(35500).div(59500);
+      return rewardPerSecond;
     } else {
-      return rewardPerSecond.mul(24000).div(59500);
+      const rewardPerSecond = await poolContract.tSharePerSecond();
+      if (depositTokenName.startsWith('TOMB')) {
+        return rewardPerSecond.mul(35500).div(59500);
+      } else {
+        return rewardPerSecond.mul(24000).div(59500);
+      }
     }
   }
 
