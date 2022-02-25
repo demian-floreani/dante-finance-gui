@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/dante-finance-gui/precache-manifest.94475cf016fd7d99d7270533f91d29b5.js"
+  "/dante-finance-gui/precache-manifest.11e032286b2b3061cdbf4fa58f49f1ff.js"
 );
 
 self.addEventListener('message', (event) => {
