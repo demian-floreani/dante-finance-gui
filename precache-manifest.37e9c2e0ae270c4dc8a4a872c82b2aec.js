@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b76b6622083edcbfa8b93d7f2b4f857f",
+    "revision": "2cc52e61f03da95e385115457fb51027",
     "url": "/dante-finance-gui/index.html"
   },
   {
-    "revision": "d418ced55b6ddc3173a8",
+    "revision": "2775f64ee134f67a7e5c",
     "url": "/dante-finance-gui/static/css/main.4f9cc8e0.chunk.css"
   },
   {
@@ -92,8 +92,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/dante-finance-gui/static/js/9.35bef1f0.chunk.js"
   },
   {
-    "revision": "d418ced55b6ddc3173a8",
-    "url": "/dante-finance-gui/static/js/main.d0a1e93f.chunk.js"
+    "revision": "2775f64ee134f67a7e5c",
+    "url": "/dante-finance-gui/static/js/main.4d4c71ba.chunk.js"
   },
   {
     "revision": "df9a60a62ab510d17e0c",
