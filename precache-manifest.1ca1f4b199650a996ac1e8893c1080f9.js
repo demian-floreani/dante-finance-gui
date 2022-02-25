@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2cc52e61f03da95e385115457fb51027",
+    "revision": "ffd722fac80e7bda18b90c404e12c579",
     "url": "/dante-finance-gui/index.html"
   },
   {
@@ -72,8 +72,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/dante-finance-gui/static/js/4.ef2be922.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c84a2e687d1f7d3ae3ea",
-    "url": "/dante-finance-gui/static/js/5.ea4b35ea.chunk.js"
+    "revision": "0fcaf429c8a17bac27dc",
+    "url": "/dante-finance-gui/static/js/5.dff5a969.chunk.js"
   },
   {
     "revision": "aacdcf9af0b898396cb3",
@@ -96,8 +96,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/dante-finance-gui/static/js/main.4d4c71ba.chunk.js"
   },
   {
-    "revision": "df9a60a62ab510d17e0c",
-    "url": "/dante-finance-gui/static/js/runtime-main.740f2ae4.js"
+    "revision": "9a50d7f9392b694a8417",
+    "url": "/dante-finance-gui/static/js/runtime-main.ce761f06.js"
   },
   {
     "revision": "385b2e844755c43a7bf26dbc7de55fd2",
