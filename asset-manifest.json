@@ -5,8 +5,8 @@
     "static/js/1.e4afa2c4.chunk.js": "/dante-finance-gui/static/js/1.e4afa2c4.chunk.js",
     "static/js/1.e4afa2c4.chunk.js.map": "/dante-finance-gui/static/js/1.e4afa2c4.chunk.js.map",
     "main.css": "/dante-finance-gui/static/css/main.4f9cc8e0.chunk.css",
-    "main.js": "/dante-finance-gui/static/js/main.9da6bfab.chunk.js",
-    "main.js.map": "/dante-finance-gui/static/js/main.9da6bfab.chunk.js.map",
+    "main.js": "/dante-finance-gui/static/js/main.8a1d558c.chunk.js",
+    "main.js.map": "/dante-finance-gui/static/js/main.8a1d558c.chunk.js.map",
     "runtime-main.js": "/dante-finance-gui/static/js/runtime-main.d5316ddc.js",
     "runtime-main.js.map": "/dante-finance-gui/static/js/runtime-main.d5316ddc.js.map",
     "static/js/4.a89d2d62.chunk.js": "/dante-finance-gui/static/js/4.a89d2d62.chunk.js",
@@ -38,7 +38,7 @@
     "static/js/17.0c9b73c1.chunk.js": "/dante-finance-gui/static/js/17.0c9b73c1.chunk.js",
     "static/js/17.0c9b73c1.chunk.js.map": "/dante-finance-gui/static/js/17.0c9b73c1.chunk.js.map",
     "index.html": "/dante-finance-gui/index.html",
-    "precache-manifest.0f57e71d29ba1e4efc6fe690db70afca.js": "/dante-finance-gui/precache-manifest.0f57e71d29ba1e4efc6fe690db70afca.js",
+    "precache-manifest.244915637057697b6ee633102e93dab4.js": "/dante-finance-gui/precache-manifest.244915637057697b6ee633102e93dab4.js",
     "service-worker.js": "/dante-finance-gui/service-worker.js",
     "static/css/main.4f9cc8e0.chunk.css.map": "/dante-finance-gui/static/css/main.4f9cc8e0.chunk.css.map",
     "static/js/11.2dac2aa5.chunk.js.LICENSE.txt": "/dante-finance-gui/static/js/11.2dac2aa5.chunk.js.LICENSE.txt",
@@ -74,6 +74,6 @@
     "static/js/runtime-main.d5316ddc.js",
     "static/js/4.a89d2d62.chunk.js",
     "static/css/main.4f9cc8e0.chunk.css",
-    "static/js/main.9da6bfab.chunk.js"
+    "static/js/main.8a1d558c.chunk.js"
   ]
 }
