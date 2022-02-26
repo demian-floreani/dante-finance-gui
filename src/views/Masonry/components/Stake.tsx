@@ -38,7 +38,7 @@ const Stake: React.FC = () => {
   const stakedBalance = useStakedBalanceOnMasonry();
   const { from, to } = useUnstakeTimerMasonry();
 
-  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars('TSHARE', tombFinance.TSHARE);
+  const stakedTokenPriceInDollars = useStakedTokenPriceInDollars('GRAIL', tombFinance.TSHARE);
   const tokenPriceInDollars = useMemo(
     () =>
       stakedTokenPriceInDollars
@@ -59,7 +59,7 @@ const Stake: React.FC = () => {
         onStake(value);
         onDismissDeposit();
       }}
-      tokenName={'TShare'}
+      tokenName={'GRAIL'}
     />,
   );
 
@@ -70,22 +70,20 @@ const Stake: React.FC = () => {
         onWithdraw(value);
         onDismissWithdraw();
       }}
-      tokenName={'TShare'}
+      tokenName={'GRAIL'}
     />,
   );
 
   return (
     <Box>
-      <Card>
+      <Card style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
         <CardContent>
           <StyledCardContentInner>
             <StyledCardHeader>
-              <CardIcon>
-                <TokenSymbol symbol="TSHARE" />
-              </CardIcon>
-              <Value value={getDisplayBalance(stakedBalance)} />
-              <Label text={`≈ $${tokenPriceInDollars}`} />
-              <Label text={'TSHARE Staked'} />
+              <TokenSymbol symbol="GRAIL" />
+              <span style={{ fontSize: '28px', marginTop: '10px' }}>{getDisplayBalance(stakedBalance)}</span>
+              <span style={{ fontSize: '16px' }}>{`≈ $${tokenPriceInDollars}`}</span>
+              <span style={{ fontSize: '16px' }}>GRAIL Staked</span>
             </StyledCardHeader>
             <StyledCardActions>
               {approveStatus !== ApprovalState.APPROVED ? (
@@ -96,7 +94,7 @@ const Stake: React.FC = () => {
                   style={{ marginTop: '20px' }}
                   onClick={approve}
                 >
-                  Approve TSHARE
+                  Approve GRAIL
                 </Button>
               ) : (
                 <>
@@ -117,7 +115,7 @@ const Stake: React.FC = () => {
         {canWithdrawFromMasonry ? (
           ''
         ) : (
-          <Card>
+          <Card style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
             <CardContent>
               <Typography style={{ textAlign: 'center' }}>Withdraw possible in</Typography>
               <ProgressCountdown hideBar={true} base={from} deadline={to} description="Withdraw available in" />

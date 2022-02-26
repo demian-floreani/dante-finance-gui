@@ -35,8 +35,8 @@ const logosBySymbol: { [title: string]: string } = {
   //BOO: booLogo,
   //SHIBA: shibaLogo,
   //ZOO: zooLogo,
-  'TOMB-FTM-LP': danteTombLpLogo,
-  'TSHARE-FTM-LP': grailFtmLpLogo,
+  'DANTE-TOMB-LP': danteTombLpLogo,
+  'GRAIL-FTM-LP': grailFtmLpLogo,
 
   DANTE: danteLogo,
   GRAIL: grailLogo,

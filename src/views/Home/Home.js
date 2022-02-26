@@ -20,11 +20,13 @@ import { Dante as tombProd, Grail as tShareProd } from '../../tomb-finance/deplo
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 
 import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
+
+
 import ZapModal from '../Bank/components/ZapModal';
 
 import { makeStyles } from '@material-ui/core/styles';
 import useTombFinance from '../../hooks/useTombFinance';
-
+import { Alert } from '@material-ui/lab';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -44,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
-  const tShareFtmLpStats = useLpStats('TSHARE-FTM-LP');
+  const tombFtmLpStats = useLpStats('DANTE-TOMB-LP');
+  const tShareFtmLpStats = useLpStats('GRAIL-FTM-LP');
   const tombStats = useTombStats();
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
@@ -63,6 +65,8 @@ const Home = () => {
 
   const buyTombAddress = 'https://spookyswap.finance/swap?outputCurrency=' + tomb.address;
   const buyTShareAddress = 'https://spookyswap.finance/swap?outputCurrency=' + tShare.address;
+  const danteGraph = 'https://dexscreener.com/';
+  const grailGraph = 'https://dexscreener.com/';
 
   const tombLPStats = useMemo(() => (tombFtmLpStats ? tombFtmLpStats : null), [tombFtmLpStats]);
   const tshareLPStats = useMemo(() => (tShareFtmLpStats ? tShareFtmLpStats : null), [tShareFtmLpStats]);
@@ -99,8 +103,8 @@ const Home = () => {
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
-  const tombLpZap = useZap({ depositTokenName: 'TOMB-FTM-LP' });
-  const tshareLpZap = useZap({ depositTokenName: 'TSHARE-FTM-LP' });
+  const tombLpZap = useZap({ depositTokenName: 'DANTE-TOMB-LP' });
+  const tshareLpZap = useZap({ depositTokenName: 'GRAIL-FTM-LP' });
 
   const [onPresentTombZap, onDissmissTombZap] = useModal(
     <ZapModal
@@ -110,7 +114,7 @@ const Home = () => {
         tombLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissTombZap();
       }}
-      tokenName={'TOMB-FTM-LP'}
+      tokenName={'DANTE-TOMB-LP'}
     />,
   );
 
@@ -122,11 +126,9 @@ const Home = () => {
         tshareLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissTshareZap();
       }}
-      tokenName={'TSHARE-FTM-LP'}
+      tokenName={'GRAIL-FTM-LP'}
     />,
   );
-
-  const hStyle = { color: 'red' };
 
   return (
     <Page>
@@ -141,48 +143,70 @@ const Home = () => {
         <Grid item xs={12} sm={8}>
           <Paper className='danteCard'>
             <Box p={4}>
-              <h2 style={{ color: 'red'}}>Welcome to Dante Finance</h2>
+              <h2>Welcome to Dante Finance</h2>
               <p>Join Dante's epic journey from Inferno to Eden. $DANTE is a new token pegged to $TOMB with future NFT utility.</p>
               <p>Stake your GRAIL in Eden to earn inflationary DANTE rewards or provide liquidity on pairs and start earning today!</p>
             </Box>
           </Paper>
         </Grid>
 
+        <Grid container spacing={3}>
+          <Grid item  xs={12} sm={12} justify="center"  style={{ margin: '12px', display: 'flex' }}>
+          <Alert variant="filled" severity="warning">
+              <b>Please visit our <a target="_blank" href="https://dantefinance.gitbook.io/dantefinance.com/">documentation</a> before purchasing DANTE or GRAILs!</b>
+          </Alert>
+          </Grid>
+        </Grid>
+
         {/* TVL */}
         <Grid item xs={12} sm={4}>
           <Card className='danteCard'>
             <CardContent align="center">
-              <h2>Total Value Locked</h2>
-              <CountUp style={{ fontSize: '25px' }} end={TVL} separator="," prefix="$" />
+              <h4>Total Value Locked</h4>
+              <CountUp style={{ fontSize: '20px' }} end={TVL} separator="," prefix="$" />
             </CardContent>
           </Card>
         </Grid>
-
-        
 
         {/* Wallet */}
         <Grid item xs={12} sm={8}>
           <Card className='danteCard' style={{ height: '100%' }}>
             <CardContent align="center" style={{ marginTop: '2.5%' }}>
-              {/* <h2 style={{ marginBottom: '20px' }}>Wallet Balance</h2> */}
-              <Button color="primary" href="/masonry" variant="contained" style={{ marginRight: '10px' }}>
-                Stake Now
-              </Button>
-              <Button href="/cemetery" variant="contained" className={classes.button} style={{ marginRight: '10px' }}>
-                Farm Now
-              </Button>
+              <Button 
+                color="primary" 
+                href="/masonry" 
+                variant="contained" 
+                style={{ marginRight: '10px' }}>Stake Now</Button>
+              <Button 
+                href="/cemetery" 
+                variant="contained" 
+                className={classes.button} 
+                style={{ marginRight: '10px' }}>Farm Now</Button>
               <Button
                 color="primary"
                 target="_blank"
                 href={buyTombAddress}
                 variant="contained"
                 style={{ marginRight: '10px' }}
-              >
-                Buy TOMB
-              </Button>
-              <Button variant="contained" target="_blank" href={buyTShareAddress} className={classes.button}>
-                Buy TSHARE
-              </Button>
+              >Buy TOMB</Button>
+              <Button 
+                variant="contained" 
+                target="_blank" 
+                href={buyTShareAddress} 
+                className={classes.button} 
+                style={{ marginRight: '10px' }}>Buy GRAIL</Button>
+              <Button 
+                color="primary"
+                variant="contained" 
+                target="_blank" 
+                href={danteGraph} 
+                className={classes.button} 
+                style={{ marginRight: '10px' }}>Dante Chart</Button>
+              <Button 
+                variant="contained" 
+                target="_blank" 
+                href={grailGraph} 
+                className={classes.button}>Grail Chart</Button>
             </CardContent>
           </Card>
         </Grid>
@@ -191,7 +215,7 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card className='danteCard'>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>DANTE</h2>
+              <h4>1 DANTE</h4>
               <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('DANTE');
@@ -206,8 +230,10 @@ const Home = () => {
               <Box mt={2}>
                 <TokenSymbol symbol="DANTE" />
               </Box>
-              Current Price
-              <Box>
+              <Box mt={0}>
+                <span style={{ fontSize: '40px' }}>=</span>
+              </Box>
+              <Box mt={0}>
                 <span style={{ fontSize: '30px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.--'} TOMB</span>
               </Box>
               <Box>
@@ -228,10 +254,10 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card className='danteCard'>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>GRAIL</h2>
+              <h4>1 GRAIL</h4>
               <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TSHARE');
+                  tombFinance.watchAssetInMetamask('GRAIL');
                 }}
                 color="primary"
                 variant="outlined"
@@ -243,7 +269,9 @@ const Home = () => {
               <Box mt={2}>
                 <TokenSymbol symbol="GRAIL" />
               </Box>
-              Current Price
+              <Box mt={0}>
+                <span style={{ fontSize: '40px' }}>=</span>
+              </Box>
               <Box>
                 <span style={{ fontSize: '30px' }}>{tSharePriceInFTM ? tSharePriceInFTM : '-.--'} FTM</span>
               </Box>
@@ -263,10 +291,10 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card className='danteCard'>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>DBOND</h2>
+              <h4>1 DBOND</h4>
               <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TBOND');
+                  tombFinance.watchAssetInMetamask('DBOND');
                 }}
                 color="primary"
                 variant="outlined"
@@ -278,9 +306,11 @@ const Home = () => {
               <Box mt={2}>
                 <TokenSymbol symbol="DBOND" />
               </Box>
-              Current Price
+              <Box mt={0}>
+                <span style={{ fontSize: '40px' }}>=</span>
+              </Box>
               <Box>
-                <span style={{ fontSize: '30px' }}>{tBondPriceInFTM ? tBondPriceInFTM : '-.--'} FTM</span>
+                <span style={{ fontSize: '30px' }}>{tBondPriceInFTM ? tBondPriceInFTM : '-.--'} TOMB</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px' }}>${tBondPriceInDollars ? tBondPriceInDollars : '-.--'}</span>
@@ -293,17 +323,13 @@ const Home = () => {
             </CardContent>
           </Card>
         </Grid>
+
         <Grid item xs={12} sm={6}>
           <Card className='danteCard'>
             <CardContent align="center">
-              <h2>DANTE-TOMB Spooky LP</h2>
+              <h4>DANTE-TOMB Spooky LP</h4>
               <Box mt={2}>
-                <TokenSymbol symbol="TOMB-FTM-LP" />
-              </Box>
-              <Box mt={2}>
-                <Button color="primary" onClick={onPresentTombZap} variant="contained">
-                  Zap In
-                </Button>
+                <TokenSymbol symbol="DANTE-TOMB-LP" />
               </Box>
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
@@ -311,29 +337,27 @@ const Home = () => {
                   {tombLPStats?.ftmAmount ? tombLPStats?.ftmAmount : '-.--'} FTM
                 </span>
               </Box>
-              <Box>${tombLPStats?.priceOfOne ? tombLPStats.priceOfOne : '-.--'}</Box>
-              <span style={{ fontSize: '12px' }}>
-                Liquidity: ${tombLPStats?.totalLiquidity ? tombLPStats.totalLiquidity : '-.--'} <br />
-                Total supply: {tombLPStats?.totalSupply ? tombLPStats.totalSupply : '-.--'}
-              </span>
+              <Box>
+                <span style={{ fontSize: '16px' }}>
+                  ${tombLPStats?.priceOfOne ? tombLPStats.priceOfOne : '-.--'}<br />
+                </span>
+                <span style={{ fontSize: '12px' }}>
+                  
+                  Liquidity: ${tombLPStats?.totalLiquidity ? tombLPStats.totalLiquidity : '-.--'}<br />
+                  Total supply: {tombLPStats?.totalSupply ? tombLPStats.totalSupply : '-.--'}
+                </span>
+              </Box>
+
             </CardContent>
           </Card>
         </Grid>
+
         <Grid item xs={12} sm={6}>
           <Card className='danteCard'>
             <CardContent align="center">
-              <h2>GRAIL-FTM Spooky LP</h2>
+              <h4>GRAIL-FTM Spooky LP</h4>
               <Box mt={2}>
-                <TokenSymbol symbol="TSHARE-FTM-LP" />
-              </Box>
-              <Box mt={2}>
-                <Button
-                  color="primary"
-                  onClick={onPresentTshareZap}
-                  variant="contained"
-                >
-                  Zap In
-                </Button>
+                <TokenSymbol symbol="GRAIL-FTM-LP" />
               </Box>
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
@@ -341,12 +365,15 @@ const Home = () => {
                   {tshareLPStats?.ftmAmount ? tshareLPStats?.ftmAmount : '-.--'} FTM
                 </span>
               </Box>
-              <Box>${tshareLPStats?.priceOfOne ? tshareLPStats.priceOfOne : '-.--'}</Box>
-              <span style={{ fontSize: '12px' }}>
-                Liquidity: ${tshareLPStats?.totalLiquidity ? tshareLPStats.totalLiquidity : '-.--'}
-                <br />
-                Total supply: {tshareLPStats?.totalSupply ? tshareLPStats.totalSupply : '-.--'}
-              </span>
+              <Box>
+                <span style={{ fontSize: '16px' }}>
+                  ${tshareLPStats?.priceOfOne ? tshareLPStats.priceOfOne : '-.--'}<br />
+                </span>
+                <span style={{ fontSize: '12px' }}>
+                  Liquidity: ${tshareLPStats?.totalLiquidity ? tshareLPStats.totalLiquidity : '-.--'}<br />
+                  Total supply: {tshareLPStats?.totalSupply ? tshareLPStats.totalSupply : '-.--'}
+                </span>
+              </Box>
             </CardContent>
           </Card>
         </Grid>

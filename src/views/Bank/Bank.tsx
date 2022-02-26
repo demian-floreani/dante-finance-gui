@@ -17,14 +17,18 @@ import useStatsForPool from '../../hooks/useStatsForPool';
 import useRedeem from '../../hooks/useRedeem';
 import { Bank as BankEntity } from '../../tomb-finance';
 import useTombFinance from '../../hooks/useTombFinance';
+import { Alert } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
     height: '100%',
     [theme.breakpoints.up('md')]: {
       height: '90px',
-    },
+    }
   },
+  danteBankCard: {
+    backgroundColor: 'rgba(104, 76, 172, 0.9)'
+  }
 }));
 
 const Bank: React.FC = () => {
@@ -37,14 +41,16 @@ const Bank: React.FC = () => {
   const { onRedeem } = useRedeem(bank);
   const statsOnPool = useStatsForPool(bank);
 
-  const test = <PageHeader icon="🏦" subtitle={`Deposit ${bank?.depositTokenName} and earn ${bank?.earnTokenName}`} title={bank?.name}/>;
-
   return account && bank ? (
     <>
       <Box>
+        <h2 style={{display:'table', padding:'10px', backgroundColor: 'rgba(104, 76, 172, 0.9)', color:'#FFF', margin: '0px auto 40px auto' }}>
+          {bank.name}
+        </h2>
+        
         <Grid container justify="center" spacing={3} style={{ marginBottom: '50px' }}>
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-            <Card className={classes.gridItem}>
+            <Card className={`classes.gridItem`} style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
               <CardContent style={{ textAlign: 'center' }}>
                 <Typography>APR</Typography>
                 <Typography>{bank.closedForStaking ? '0.00' : statsOnPool?.yearlyAPR}%</Typography>
@@ -52,7 +58,7 @@ const Bank: React.FC = () => {
             </Card>
           </Grid>
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-            <Card className={classes.gridItem}>
+            <Card className={classes.gridItem} style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
               <CardContent style={{ textAlign: 'center' }}>
                 <Typography>Daily APR</Typography>
                 <Typography>{bank.closedForStaking ? '0.00' : statsOnPool?.dailyAPR}%</Typography>
@@ -60,7 +66,7 @@ const Bank: React.FC = () => {
             </Card>
           </Grid>
           <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-            <Card className={classes.gridItem}>
+            <Card className={classes.gridItem} style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
               <CardContent style={{ textAlign: 'center' }}>
                 <Typography>TVL</Typography>
                 <Typography>${statsOnPool?.TVL}</Typography>
@@ -99,12 +105,12 @@ const Bank: React.FC = () => {
 
 const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
   const tombFinance = useTombFinance();
-  const tombAddr = tombFinance.TOMB.address;
+  const tombAddr = tombFinance.DANTE.address;
   const tshareAddr = tombFinance.TSHARE.address;
 
   let pairName: string;
   let uniswapUrl: string;
-  if (bank.depositTokenName.includes('TOMB')) {
+  if (bank.depositTokenName.includes('DANTE')) {
     pairName = 'TOMB-FTM pair';
     uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tombAddr;
   } else {
@@ -112,7 +118,7 @@ const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
     uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tshareAddr;
   }
   return (
-    <Card>
+    <Card style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
       <CardContent>
         <StyledLink href={uniswapUrl} target="_blank">
           {`👻 Provide liquidity for ${pairName} now on SpookySwap 👻`}
@@ -141,8 +147,9 @@ const StyledBank = styled.div`
 
 const StyledLink = styled.a`
   font-weight: 700;
+  font-size: 20px;
   text-decoration: none;
-  color: ${(props) => props.theme.color.primary.main};
+  color: #FFF;
 `;
 
 const StyledCardsWrapper = styled.div`
