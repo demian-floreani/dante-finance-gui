@@ -26,7 +26,7 @@ import useTotalStakedOnMasonry from '../../hooks/useTotalStakedOnMasonry';
 import useClaimRewardCheck from '../../hooks/masonry/useClaimRewardCheck';
 import useWithdrawCheck from '../../hooks/masonry/useWithdrawCheck';
 import ProgressCountdown from './components/ProgressCountdown';
-import MasonryImage from '../../assets/img/masonry.png';
+import MasonryImage from '../../assets/img/eden.png';
 import { createGlobalStyle } from 'styled-components';
 
 const BackgroundImage = createGlobalStyle`
@@ -64,13 +64,11 @@ const Masonry = () => {
       <BackgroundImage />
       {!!account ? (
         <>
-          <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
-            Masonry
-          </Typography>
+          <h2 style={{display:'table', padding:'10px', backgroundColor: 'rgba(104, 76, 172, 0.9)', color:'#FFF', margin: '0px auto 0px auto' }}>Eden</h2>
           <Box mt={5}>
             <Grid container justify="center" spacing={3}>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card className={classes.gridItem}>
+                <Card className={classes.gridItem} style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
                   <CardContent>
                     <Typography style={{ textAlign: 'center' }}>Next Epoch</Typography>
                     <ProgressCountdown base={moment().toDate()} hideBar={true} deadline={to} description="Next Epoch" />
@@ -78,7 +76,7 @@ const Masonry = () => {
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card className={classes.gridItem}>
+                <Card className={classes.gridItem} style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
                   <CardContent align="center">
                     <Typography>Current Epoch</Typography>
                     <Typography>{Number(currentEpoch)}</Typography>
@@ -86,17 +84,17 @@ const Masonry = () => {
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card className={classes.gridItem}>
+                <Card className={classes.gridItem} style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
                   <CardContent align="center">
                     <Typography>
-                      TOMB Price<small>(TWAP)</small>
+                      DANTE Price<small>(TWAP)</small>
                     </Typography>
                     <Typography>{scalingFactor}</Typography>
                   </CardContent>
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2} className={classes.gridItem}>
-                <Card className={classes.gridItem}>
+                <Card className={classes.gridItem} style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
                   <CardContent align="center">
                     <Typography>APR</Typography>
                     <Typography>{masonryAPR.toFixed(2)}%</Typography>
@@ -104,9 +102,9 @@ const Masonry = () => {
                 </Card>
               </Grid>
               <Grid item xs={12} md={2} lg={2}>
-                <Card className={classes.gridItem}>
+                <Card className={classes.gridItem} style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
                   <CardContent align="center">
-                    <Typography>TSHARES Staked</Typography>
+                    <Typography>GRAILs Staked</Typography>
                     <Typography>{getDisplayBalance(totalStaked)}</Typography>
                   </CardContent>
                 </Card>
@@ -116,7 +114,7 @@ const Masonry = () => {
             <Grid container justify="center">
               <Box mt={3} style={{ width: '600px' }}>
                 <Alert variant="filled" severity="warning">
-                  Staked TSHAREs can only be withdrawn after 6 epochs since deposit.
+                  Staked GRAILs can only be withdrawn after 6 epochs since deposit.
                 </Alert>
               </Box>
             </Grid>

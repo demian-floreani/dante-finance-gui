@@ -7,21 +7,43 @@ h4 {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Arial';
+  font-family: 'Augusta';
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration:underline;
+  text-decoration-color: #fff;
+}
+
+span, 
+p, 
+h5,
+h6 {
+  font-family: Arial, Helvetica, sans-serif !important;
+  /*font-size: 1em !important;*/
+  margin: 0;
+  margin-bottom: 2px;
+}
+
+h4 {
+  color: rgb(244, 143, 78);
+  font-size: 2em;
 }
 
 h2 {
-  font-size: 2.5em !important;
-}
-
-p {
-  font-size: 1.5em !important;
+  color: rgb(244, 143, 78) !important;
+  font-size: 3em !important;
+  margin-bottom: 15px;
 }
 
 @font-face {
-  font-family: 'testfont';
+  font-family: 'Augusta';
   font-weight: 'normal';
-  src: url("assets/fonts/enchanted.otf") format("opentype");
+  src: url("assets/fonts/Augusta.ttf") format("truetype");
 }
 
 html,
@@ -30,16 +52,34 @@ body {
   height: 100%;
 }
 
-.MuiPaper-root {
+.danteCard {
   background-color: rgba(104, 76, 172, 0.9) !important;
 }
+
+
+.bankCard {
+  background-color: rgba(104, 76, 172, 0.9) !important;
+}
+
+.dantePurgatoryCard {
+  background-color: rgba(104, 76, 172, 0.9) !important;
+}
+
+.dantePurgatoryCard:hover {
+  /*background-color: rgba(0, 0, 0, 0.9) !important;*/
+  /*box-shadow: 5px 5px 5px 5px;*/
+}
+
+/*.MuiPaper-root {
+  background-color: rgba(104, 76, 172, 0.9) ;
+}*/
 
 .makeStyles-paper-11,
 .makeStyles-paper-11 h2,
 .MuiTypography-body1,
 .MuiPaper-root,
 .MuiPaper-root h2 {
-  color: #FFFFFF !important;
+  /*color: #FFFFFF !important;*/
 }
 
 body {
@@ -52,16 +92,6 @@ body {
   background-position: center center !important;
   background-attachment: fixed !important;
   background-size: cover !important;
-}
-
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  
 }
 
 footer .a:hover {

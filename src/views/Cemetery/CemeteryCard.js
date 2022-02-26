@@ -7,39 +7,35 @@ import TokenSymbol from '../../components/TokenSymbol';
 const CemeteryCard = ({ bank }) => {
   return (
     <Grid item xs={12} md={4} lg={4}>
-      <Card className='.custom-dante-box' variant="outlined">
-        <CardContent>
-          <Box style={{ position: 'relative' }}>
-            <Box
-              style={{
-                position: 'absolute',
-                right: '0px',
-                top: '-5px',
-                height: '48px',
-                width: '48px',
-                
-                alignItems: 'center',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <TokenSymbol size={64} symbol={bank.depositTokenName} />
+      <Link to={`/cemetery/${bank.contract}`}>
+      {/*<a href={`/dante-finance-gui/cemetery/${bank.contract}`}>*/}
+        <Card className='dantePurgatoryCard' variant="outlined">
+          <CardContent>
+            <Box style={{ position: 'relative' }}>
+              <Box
+                style={{
+                  position: 'absolute',
+                  right: '0px',
+                  top: '-5px',
+                  height: '48px',
+                  width: '48px',
+                  
+                  alignItems: 'center',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <TokenSymbol size={64} symbol={bank.depositTokenName} />
+              </Box>
+              <h4 style={{marginBottom: "10px"}}>{bank.depositTokenName}</h4>
+              <h5 style={{fontSize: "1em"}}>Deposit: {bank.depositTokenName.toUpperCase()}</h5> 
+              <h5 style={{fontSize: "1em"}}>Earn: {bank.earnTokenName}</h5>
+              <h5 style={{fontSize: "1em"}}>Fee: 0%</h5>
             </Box>
-            <Typography variant="h5" component="h2">
-              {bank.depositTokenName}
-            </Typography>
-            <Typography color="textSecondary">
-              {/* {bank.name} */}
-              Deposit {bank.depositTokenName.toUpperCase()} Earn {` ${bank.earnTokenName}`}
-            </Typography>
-          </Box>
-        </CardContent>
-        <CardActions style={{ justifyContent: 'flex-end' }}>
-          <Button color="primary" size="small" variant="contained" component={Link} to={`/cemetery/${bank.contract}`}>
-            View
-          </Button>
-        </CardActions>
-      </Card>
+          </CardContent>
+        </Card>
+        </Link>
+      {/*</a>*/}
     </Grid>
   );
 };

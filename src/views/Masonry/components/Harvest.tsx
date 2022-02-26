@@ -32,16 +32,14 @@ const Harvest: React.FC = () => {
 
   return (
     <Box>
-      <Card>
+      <Card style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
         <CardContent>
           <StyledCardContentInner>
             <StyledCardHeader>
-              <CardIcon>
-                <TokenSymbol symbol="TOMB" />
-              </CardIcon>
-              <Value value={getDisplayBalance(earnings)} />
-              <Label text={`≈ $${earnedInDollars}`} />
-              <Label text="TOMB Earned" />
+              <TokenSymbol symbol="DANTE" />
+              <span style={{ fontSize: '28px', marginTop: '10px' }}>{getDisplayBalance(earnings)}</span>
+              <span style={{ fontSize: '16px' }}>{`≈ $${earnedInDollars}`}</span>
+              <span style={{ fontSize: '16px' }}>DANTE Earned</span>
             </StyledCardHeader>
             <StyledCardActions>
               <Button
@@ -60,7 +58,7 @@ const Harvest: React.FC = () => {
         {canClaimReward ? (
           ''
         ) : (
-          <Card>
+          <Card style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
             <CardContent>
               <Typography style={{ textAlign: 'center' }}>Claim possible in</Typography>
               <ProgressCountdown hideBar={true} base={from} deadline={to} description="Claim available in" />

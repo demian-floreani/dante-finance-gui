@@ -28,22 +28,23 @@ const Harvest: React.FC<HarvestProps> = ({ bank }) => {
   const tombStats = useTombStats();
   const tShareStats = useShareStats();
 
-  const tokenName = bank.earnTokenName === 'TSHARE' ? 'TSHARE' : 'TOMB';
-  const tokenStats = bank.earnTokenName === 'TSHARE' ? tShareStats : tombStats;
+  const tokenName = bank.earnTokenName === 'GRAIL' ? 'GRAIL' : 'DANTE';
+  const tokenStats = bank.earnTokenName === 'GRAIL' ? tShareStats : tombStats;
   const tokenPriceInDollars = useMemo(
     () => (tokenStats ? Number(tokenStats.priceInDollars).toFixed(2) : null),
     [tokenStats],
   );
   const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
   return (
-    <Card>
+    <Card style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
       <CardContent>
         <StyledCardContentInner>
           <StyledCardHeader>
-            <TokenSymbol symbol={bank.earnToken.symbol} />
-            <Value value={getDisplayBalance(earnings)} />
-            <Label text={`≈ $${earnedInDollars}`} />
-            <Label text={`${tokenName} Earned`} />
+            <TokenSymbol symbol={bank.earnToken.symbol} size={80} />
+            <span style={{ fontSize: '26px', marginTop: '10px' }}>{getDisplayBalance(earnings)}</span>
+            <span style={{ fontSize: '16px' }}>{`${tokenName} Earned`}</span>
+            <span style={{ fontSize: '14px' }}>{`≈ $${earnedInDollars}`}</span>
+            
           </StyledCardHeader>
           <StyledCardActions>
             <Button onClick={onReward} disabled={earnings.eq(0)} color="primary" variant="contained">
@@ -64,7 +65,7 @@ const StyledCardHeader = styled.div`
 const StyledCardActions = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${(props) => props.theme.spacing[6]}px;
+  margin-top: ${(props) => props.theme.spacing[3]}px;
   width: 100%;
 `;
 

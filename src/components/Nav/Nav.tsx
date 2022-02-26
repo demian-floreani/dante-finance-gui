@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    color: '#e0e3bd',
-    'background-color': '#121212',
+    color: '#FFF',
+    'background-color': 'rgba(104, 76, 172, 0.9)',
     // borderBottom: `1px solid ${theme.palette.divider}`,
     padding: '10px',
     marginBottom: '3rem',
@@ -52,14 +52,14 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
   },
   toolbarTitle: {
-    fontFamily: '"Amarante", cursive',
+    fontFamily: 'Augusta',
     fontSize: '30px',
     flexGrow: 1,
   },
   link: {
     textTransform: 'uppercase',
-    color: '#e0e3bd',
-    fontSize: '14px',
+    color: '#FFF',
+    fontSize: '20px',
     margin: theme.spacing(1, 2),
     textDecoration: 'none',
     '&:hover': {
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
   brandLink: {
     textDecoration: 'none',
-    color: '#e0e3bd',
+    color: '#FFF',
     '&:hover': {
       textDecoration: 'none',
     },
@@ -94,16 +94,15 @@ const Nav = () => {
       <Toolbar className={classes.toolbar}>
         {matches ? (
           <>
-            <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
+            <Typography variant="h2" color="inherit" noWrap className={classes.toolbarTitle}>
               <Link to="/" color="inherit" className={classes.brandLink}>Dante Finance</Link>
             </Typography>
             <Box mr={5}>
-              <Link color="textPrimary" to="/" className={classes.link}>Home</Link>
               <Link color="textPrimary" to="/cemetery" className={classes.link}>Purgatory</Link>
               <Link color="textPrimary" to="/masonry" className={classes.link}>Eden</Link>
               <Link color="textPrimary" to="/pit" className={classes.link}>Inferno</Link>
               <Link color="textPrimary" to="/regulations" className={classes.link}>Regulations</Link>
-              <a href="https://docs.tomb.finance" className={classes.link}>Docs</a>
+              <a href="https://docs.DANTE.finance" className={classes.link}>Docs</a>
             </Box>
             <AccountButton text="Connect" />
           </>
@@ -145,7 +144,7 @@ const Nav = () => {
                 <ListItemLink primary="Masonry" to="/masonry" />
                 <ListItemLink primary="Pit" to="/pit" />
                 <ListItemLink primary="Regulations" to="/regulations" />
-                <ListItem button component="a" href="https://docs.tomb.finance">
+                <ListItem button component="a" href="https://docs.DANTE.finance">
                   <ListItemText>Docs</ListItemText>
                 </ListItem>
                 <ListItem style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

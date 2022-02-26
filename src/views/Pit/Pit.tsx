@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import Page from '../../components/Page';
-import PitImage from '../../assets/img/pit.png';
+import PitImage from '../../assets/img/hell.png';
 import { createGlobalStyle } from 'styled-components';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import { useWallet } from 'use-wallet';
@@ -61,14 +61,16 @@ const Pit: React.FC = () => {
         <BackgroundImage />
         {!!account ? (
           <>
-            <Route exact path={path}>
+            {/*<Route exact path={path}>
               <PageHeader icon={'🏦'} title="Buy & Redeem Bonds" subtitle="Earn premiums upon redemption" />
-            </Route>
+        </Route>*/}
+            <h2 style={{display:'table', padding:'10px', backgroundColor: 'rgba(104, 76, 172, 0.9)', color:'#FFF', margin: '0px auto 0px auto' }}>Inferno</h2>
+
             <StyledBond>
               <StyledCardWrapper>
                 <ExchangeCard
                   action="Purchase"
-                  fromToken={tombFinance.TOMB}
+                  fromToken={tombFinance.DANTE}
                   fromTokenName="TOMB"
                   toToken={tombFinance.TBOND}
                   toTokenName="TBOND"
@@ -99,7 +101,7 @@ const Pit: React.FC = () => {
                   action="Redeem"
                   fromToken={tombFinance.TBOND}
                   fromTokenName="TBOND"
-                  toToken={tombFinance.TOMB}
+                  toToken={tombFinance.DANTE}
                   toTokenName="TOMB"
                   priceDesc={`${getDisplayBalance(bondBalance)} TBOND Available`}
                   onExchange={handleRedeemBonds}
@@ -119,6 +121,7 @@ const Pit: React.FC = () => {
 
 const StyledBond = styled.div`
   display: flex;
+  margin-top: 40px;
   @media (max-width: 768px) {
     width: 100%;
     flex-flow: column nowrap;

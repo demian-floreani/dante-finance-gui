@@ -8,7 +8,7 @@ const useTombStats = () => {
   const tombFinance = useTombFinance();
 
   const fetchCashPrice = useCallback(async () => {
-    setStat(await tombFinance.getTombStat());
+    setStat(await tombFinance.getDanteStat());
   }, [tombFinance]);
 
   useEffect(() => {
