@@ -175,11 +175,11 @@ const Home = () => {
             <CardContent align="center" style={{ marginTop: '2.5%' }}>
               <Button 
                 color="primary" 
-                href="/#masonry" 
+                href="/masonry" 
                 variant="contained" 
                 style={{ marginRight: '10px' }}>Stake Now</Button>
               <Button 
-                href="/#cemetery" 
+                href="/cemetery" 
                 variant="contained" 
                 className={classes.button} 
                 style={{ marginRight: '10px' }}>Farm Now</Button>
