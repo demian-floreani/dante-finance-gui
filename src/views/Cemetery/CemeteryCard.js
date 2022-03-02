@@ -7,8 +7,6 @@ import TokenSymbol from '../../components/TokenSymbol';
 const CemeteryCard = ({ bank }) => {
   return (
     <Grid item xs={12} md={4} lg={4}>
-      <Link to={`/cemetery/${bank.identifier}`}>
-      {/*<a href={`/dante-finance-gui/cemetery/${bank.contract}`}>*/}
         <Card className='dantePurgatoryCard' variant="outlined">
           <CardContent>
             <Box style={{ position: 'relative' }}>
@@ -33,9 +31,10 @@ const CemeteryCard = ({ bank }) => {
               <h5 style={{fontSize: "1em"}}>Fee: {bank.fee}%</h5>
             </Box>
           </CardContent>
+          <CardActions style={{ justifyContent: 'flex-end' }}>
+            <Button color="primary" size="small" variant="contained" component={Link} to={`/cemetery/${bank.identifier}`}>View</Button>
+          </CardActions>
         </Card>
-        </Link>
-      {/*</a>*/}
     </Grid>
   );
 };

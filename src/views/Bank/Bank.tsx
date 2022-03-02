@@ -41,6 +41,9 @@ const Bank: React.FC = () => {
   const { onRedeem } = useRedeem(bank);
   const statsOnPool = useStatsForPool(bank);
 
+  console.log(bankId);
+  console.log(bank);
+
   return account && bank ? (
     <>
       <Box>
