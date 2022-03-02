@@ -9,6 +9,29 @@ const CemeteryCard = ({ bank }) => {
     <Grid item xs={12} md={4} lg={4}>
         <Card className='dantePurgatoryCard' variant="outlined">
           <CardContent>
+
+            <Grid justify="space-between" container>
+              <Grid item>
+                <h4>{bank.depositTokenName}</h4>
+              </Grid>
+
+              <Grid item style={{padding: '0px'}}>
+                <TokenSymbol size={bank.depositTokenName.includes('LP') ? 64 : 50} symbol={bank.depositTokenName} />
+              </Grid>
+            </Grid>
+            <Grid justify="space-between" container style={{marginTop: '10px'}}>
+              <Grid item>
+                <h5 style={{fontSize: "1em"}}>Deposit: {bank.depositTokenName.toUpperCase()}</h5> 
+                <h5 style={{fontSize: "1em"}}>Earn: {bank.earnTokenName}</h5>
+              </Grid>
+
+              <Grid item>
+                <Button color='primary' size="small" variant="contained" component={Link} to={`/cemetery/${bank.identifier}`}>
+                  View
+                </Button>
+              </Grid>
+            </Grid>
+            {/*
             <Box style={{ position: 'relative' }}>
               <Box
                 style={{
@@ -25,15 +48,12 @@ const CemeteryCard = ({ bank }) => {
               >
                 <TokenSymbol size={64} symbol={bank.depositTokenName} />
               </Box>
-              <h4 style={{marginBottom: "10px"}}>{bank.depositTokenName}</h4>
+              <h4 style={{marginBottom: "5px"}}>{bank.depositTokenName}</h4>
               <h5 style={{fontSize: "1em"}}>Deposit: {bank.depositTokenName.toUpperCase()}</h5> 
               <h5 style={{fontSize: "1em"}}>Earn: {bank.earnTokenName}</h5>
-              <h5 style={{fontSize: "1em"}}>Fee: {bank.fee}%</h5>
             </Box>
+              */}
           </CardContent>
-          <CardActions style={{ justifyContent: 'flex-end' }}>
-            <Button color="primary" size="small" variant="contained" component={Link} to={`/cemetery/${bank.identifier}`}>View</Button>
-          </CardActions>
         </Card>
     </Grid>
   );

@@ -51,25 +51,12 @@ const Footer = () => {
           </Grid>
           <Grid item xs={6} style={{ textAlign: 'right' }}>
             <a
-              href="https://twitter.com/tombfinance"
+              href="https://twitter.com/dantefinance"
               rel="noopener noreferrer"
               target="_blank"
               className={classes.link}
-            >
-              <img alt="twitter" src={TwitterImage} className={classes.img} />
-            </a>
-            <a href="https://t.me/tombfinance" rel="noopener noreferrer" target="_blank" className={classes.link}>
-              <img alt="telegram" src={TelegramImage} className={classes.img} />
-            </a>
-            <a
-              href="https://www.youtube.com/channel/UCGf87DxPzLXwPrfYpXIkaLQ"
-              rel="noopener noreferrer"
-              target="_blank"
-              className={classes.link}
-            >
-              <img alt="youtube" src={YoutubeImage} className={classes.img} />
-            </a>
-            <a href="http://discord.DANTE.finance/" rel="noopener noreferrer" target="_blank" className={classes.link}>
+            ><img alt="twitter" src={TwitterImage} className={classes.img} /></a>
+            <a href="http://discord.dante.finance/" rel="noopener noreferrer" target="_blank" className={classes.link}>
               <img alt="discord" src={DiscordImage} className={classes.img} />
             </a>
           </Grid>
