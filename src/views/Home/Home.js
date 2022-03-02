@@ -7,6 +7,7 @@ import { createGlobalStyle } from 'styled-components';
 import CountUp from 'react-countup';
 import CardIcon from '../../components/CardIcon';
 import TokenSymbol from '../../components/TokenSymbol';
+import LaunchCountdown from '../../components/LaunchCountdown'
 import useTombStats from '../../hooks/useTombStats';
 import useLpStats from '../../hooks/useLpStats';
 import useModal from '../../hooks/useModal';
@@ -174,11 +175,11 @@ const Home = () => {
             <CardContent align="center" style={{ marginTop: '2.5%' }}>
               <Button 
                 color="primary" 
-                href="/masonry" 
+                href="/#masonry" 
                 variant="contained" 
                 style={{ marginRight: '10px' }}>Stake Now</Button>
               <Button 
-                href="/cemetery" 
+                href="/#cemetery" 
                 variant="contained" 
                 className={classes.button} 
                 style={{ marginRight: '10px' }}>Farm Now</Button>

@@ -98,9 +98,9 @@ export class TombFinance {
   //===================================================================
 
   async getDanteStat(): Promise<TokenStat> {
-    const { DanteTombRewardPool } = this.contracts;
+    const { DanteRewardPool } = this.contracts;
     const supply = await this.DANTE.totalSupply();
-    const tombRewardPoolSupply = await this.DANTE.balanceOf(DanteTombRewardPool.address);
+    const tombRewardPoolSupply = await this.DANTE.balanceOf(DanteRewardPool.address);
 
     const tombCirculatingSupply = supply
       .sub(tombRewardPoolSupply);
@@ -207,7 +207,7 @@ export class TombFinance {
    * CirculatingSupply (always equal to total supply for bonds)
    */
   async getShareStat(): Promise<TokenStat> {
-    const { DanteTombLPGrailRewardPool } = this.contracts;
+    const { GrailRewardPool } = this.contracts;
 
     const supply = await this.TSHARE.totalSupply();
 
@@ -216,7 +216,7 @@ export class TombFinance {
       this.TSHARE,
       this.externalTokens['GRAIL-FTM-LP'].address);
     
-    const rewardPool = await this.TSHARE.balanceOf(DanteTombLPGrailRewardPool.address);
+    const rewardPool = await this.TSHARE.balanceOf(GrailRewardPool.address);
     
     const tShareCirculatingSupply = supply.sub(rewardPool);
     const priceOfOneFTM = await this.getWFTMPriceFromPancakeswap();
@@ -231,12 +231,12 @@ export class TombFinance {
   }
 
   async getTombStatInEstimatedTWAP(): Promise<TokenStat> {
-    const { SeigniorageOracle, DanteTombRewardPool } = this.contracts;
+    const { SeigniorageOracle, DanteRewardPool } = this.contracts;
     const expectedPrice = await SeigniorageOracle.twap(this.DANTE.address, ethers.utils.parseEther('1'));
 
     const supply = await this.DANTE.totalSupply();
 
-    const rewardPool = await this.DANTE.balanceOf(DanteTombRewardPool.address);
+    const rewardPool = await this.DANTE.balanceOf(DanteRewardPool.address);
     
     const danteCirculatingSupply = supply.sub(rewardPool);
     
@@ -268,7 +268,6 @@ export class TombFinance {
     const stat = bank.earnTokenName === 'DANTE' ? await this.getDanteStat() : await this.getShareStat();
     const tokenPerSecond = await this.getTokenPerSecond(
       bank.earnTokenName,
-      bank.contract,
       poolContract,
       bank.depositTokenName,
     );
@@ -291,33 +290,43 @@ export class TombFinance {
   /**
    * Method to return the amount of tokens the pool yields per second
    * @param earnTokenName the name of the token that the pool is earning
-   * @param contractName the contract of the pool/bank
    * @param poolContract the actual contract of the pool
    * @returns
    */
-  async getTokenPerSecond(
+   async getTokenPerSecond(
     earnTokenName: string,
-    contractName: string,
     poolContract: Contract,
     depositTokenName: string,
   ) {
     if (earnTokenName === 'DANTE') {
       const rewardPerSecond = await poolContract.dantePerSecond();
 
-      
       // calculate reward per second based on deposit token allocation
-      /*if (depositTokenName === 'WFTM') {
-        return rewardPerSecond;
-      }*/
-      return rewardPerSecond;
+      switch(depositTokenName){
+        case 'DANTE-TOMB-LP':
+          return rewardPerSecond.mul(10000).div(20000);
+        case 'USDC':
+          return rewardPerSecond.mul(4000).div(20000);
+        case 'WFTM':
+          return rewardPerSecond.mul(4000).div(20000);
+        case 'TOMB':
+          return rewardPerSecond.mul(2000).div(20000);
+        default:
+          return 0;
+      }
     } else {
       const rewardPerSecond = await poolContract.tSharePerSecond();
-      return rewardPerSecond;
-      /*if (depositTokenName.startsWith('TOMB')) {
-        return rewardPerSecond.mul(35500).div(59500);
-      } else {
-        return rewardPerSecond.mul(24000).div(59500);
-      }*/
+
+      switch(depositTokenName) {
+        case 'DANTE-TOMB-LP':
+          return rewardPerSecond.mul(29750).div(59500);
+        case 'GRAIL-FTM-LP':
+          return rewardPerSecond.mul(22000).div(59500);
+        case 'DANTE-GRAIL-LP': 
+          return rewardPerSecond.mul(7750).div(59500);
+        default:
+          return 0;
+      }
     }
   }
 
@@ -344,6 +353,9 @@ export class TombFinance {
       case 'GRAIL-FTM-LP': {
         return await this.getLPTokenPrice(token, this.TSHARE, false);
       }
+      case 'DANTE-GRAIL-LP': {
+        return await this.getLPTokenPrice(token, this.DANTE, true);;
+      }
       case 'GRAIL': {
         const priceInFTM = await this.getTokenPriceFromPancakeswap(
           this.FTM,
@@ -353,6 +365,19 @@ export class TombFinance {
         const ftmInDollars = await this.getWFTMPriceFromPancakeswap();
         
         return (Number(priceInFTM) * Number(ftmInDollars)).toFixed(2);
+      }
+      case 'TOMB': {
+        const priceInFTM = await this.getTokenPriceFromPancakeswap(
+          this.FTM,
+          this.TOMB,
+          this.externalTokens['TOMB-FTM-LP'].address);
+
+        const ftmInDollars = await this.getWFTMPriceFromPancakeswap();
+        
+        return (Number(priceInFTM) * Number(ftmInDollars)).toFixed(2);
+      }
+      case 'USDC': {
+        return '1';
       }
       default: {
         return '0'
@@ -549,10 +574,10 @@ export class TombFinance {
 
   async getWFTMPriceFromPancakeswap(): Promise<string> {
 
-    const { WFTM, FUSDT } = this.externalTokens;
+    const { WFTM, USDC } = this.externalTokens;
 
     return this.getTokenPriceFromPancakeswap(
-      FUSDT,
+      USDC,
       WFTM,
       this.externalTokens['USDC-FTM-LP'].address
     );

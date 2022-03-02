@@ -11,7 +11,7 @@ import tombFtmLpLogo from '../../assets/img/tomb_ftm_lp.png';
 import tshareFtmLpLogo from '../../assets/img/tshare_ftm_lp.png';
 
 import wftmLogo from '../../assets/img/ftm_logo_blue.svg';
-import booLogo from '../../assets/img/spooky.png';
+import usdcLogo from '../../assets/img/USDC.svg';
 import zooLogo from '../../assets/img/zoo_logo.svg';
 import shibaLogo from '../../assets/img/shiba_logo.svg';
 
@@ -20,6 +20,7 @@ import grailLogo from '../../assets/img/grail.svg';
 import dbondLogo from '../../assets/img/dbond.svg';
 import danteTombLpLogo from '../../assets/img/dante_tomb.svg';
 import grailFtmLpLogo from '../../assets/img/grail_ftm.svg';
+import danteGrailLpLogo from '../../assets/img/dante_grail.svg';
 import danteLogoPNG from '../../assets/img/dante_500x500.png';
 
 
@@ -30,13 +31,12 @@ const logosBySymbol: { [title: string]: string } = {
   TOMBPNG: tombLogoPNG,
   TSHAREPNG: tShareLogoPNG,
   TSHARE: tShareLogo,
-  TBOND: tBondLogo,
+  TBOND: tBondLogo,  
   WFTM: wftmLogo,
-  //BOO: booLogo,
-  //SHIBA: shibaLogo,
-  //ZOO: zooLogo,
+  USDC: usdcLogo,
   'DANTE-TOMB-LP': danteTombLpLogo,
   'GRAIL-FTM-LP': grailFtmLpLogo,
+  'DANTE-GRAIL-LP': danteGrailLpLogo,
 
   DANTE: danteLogo,
   GRAIL: grailLogo,

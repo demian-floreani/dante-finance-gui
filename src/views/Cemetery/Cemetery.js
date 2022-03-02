@@ -9,6 +9,7 @@ import CemeteryCard from './CemeteryCard';
 import CemeteryImage from '../../assets/img/purgatory.png';
 import { createGlobalStyle } from 'styled-components';
 import useBanks from '../../hooks/useBanks';
+import useFetchGenesisStartTime from '../../hooks/useFetchGenesisStartTime';
 import { Alert } from '@material-ui/lab';
 
 const BackgroundImage = createGlobalStyle`
@@ -23,6 +24,9 @@ const Cemetery = () => {
   const { path } = useRouteMatch();
   const { account } = useWallet();
   const activeBanks = banks.filter((bank) => !bank.finished);
+  const timestamp = useFetchGenesisStartTime();
+  var date = new Date(timestamp * 1000).toUTCString();
+
   return (
     <Switch>
       <Page>
@@ -36,6 +40,7 @@ const Cemetery = () => {
               <Box mt={5}>
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 2).length === 0}>
                   <h4 style={{display:'table', padding:'10px', backgroundColor: 'rgba(104, 76, 172, 0.9)', color:'#FFF', margin: '0px auto 0px auto' }}>Earn Grail by staking LP</h4>
+                  
                   <Grid container spacing={3} style={{marginTop: '10px', marginBottom: '10px'}}>
                     {activeBanks
                       .filter((bank) => bank.sectionInUI === 2)
@@ -47,20 +52,19 @@ const Cemetery = () => {
                   </Grid>
                 </div>
 
-                <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 0).length === 0}>
+                <div style={{marginTop: '40px'}} hidden={activeBanks.filter((bank) => bank.sectionInUI === 0).length === 0}>
                   <h4 style={{display:'table', padding:'10px', backgroundColor: 'rgba(104, 76, 172, 0.9)', color:'#FFF', margin: '0px auto 0px auto' }}>Genesis Pools</h4>
                   
                   <Grid container style={{marginTop: '10px'}}>
                     <Grid item md='3'></Grid>
                     <Grid item md='6'>
                       <Alert variant="filled" severity="warning">
-                        Pools starting at Mon, 21 Feb 2022 14:00:00 GMT and will run for 2 days with a 0.8% deposit fee. <br/>
-                        Please refer to our documentation to understand our protocol's fee model.
+                        Pools starting at {date} and will run for 2 days with a 0.8% deposit fee. Please refer to our documentation to understand our protocol's fee model.
                       </Alert>
                     </Grid>
                     <Grid item md='3'></Grid>
                   </Grid>
-
+                  
                   <Grid container spacing={3} style={{marginTop: '15px'}}>
                     {activeBanks
                       .filter((bank) => bank.sectionInUI === 0)
