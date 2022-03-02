@@ -9,6 +9,7 @@ export interface BankInfo {
   sectionInUI: number;
   contract: ContractName;
   depositTokenName: ContractName;
+  depositTokenNameSpan: string;
   earnTokenName: ContractName;
   sort: number;
   finished: boolean;

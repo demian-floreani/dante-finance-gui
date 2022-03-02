@@ -12,7 +12,7 @@ const CemeteryCard = ({ bank }) => {
 
             <Grid justify="space-between" container>
               <Grid item>
-                <h4>{bank.depositTokenName}</h4>
+                <h4>{bank.depositTokenNameSpan}</h4>
               </Grid>
 
               <Grid item style={{padding: '0px'}}>
