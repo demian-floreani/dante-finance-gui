@@ -113,20 +113,19 @@ const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
   const tombAddr = tombFinance.DANTE.address;
   const tshareAddr = tombFinance.TSHARE.address;
 
-  let pairName: string;
   let uniswapUrl: string;
-  if (bank.depositTokenName.includes('DANTE')) {
-    pairName = 'TOMB-FTM pair';
+  if (bank.depositTokenName === 'DANTE-TOMB-LP') {
     uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tombAddr;
-  } else {
-    pairName = 'TSHARE-FTM pair';
+  } else if (bank.depositTokenName === 'GRAIL-FTM-LP') {
+    uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tshareAddr;
+  } else if (bank.depositTokenName === 'DANTE-GRAIL-LP') {
     uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tshareAddr;
   }
   return (
     <Card style={{backgroundColor: 'rgba(104, 76, 172, 0.9)'}}>
       <CardContent>
         <StyledLink href={uniswapUrl} target="_blank">
-          {`👻 Provide liquidity for ${pairName} now on SpookySwap 👻`}
+          {`👻 Provide liquidity for ${bank.depositTokenName} now on SpookySwap 👻`}
         </StyledLink>
       </CardContent>
     </Card>

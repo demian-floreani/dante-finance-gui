@@ -4,7 +4,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 import Page from '../../components/Page';
-import RegulationsImage from '../../assets/img/regulations_bg.png';
+import RegulationsImage from '../../assets/img/HOME1900x1080.png';
 import { createGlobalStyle } from 'styled-components';
 import useTombFinance from '../../hooks/useTombFinance';
 
@@ -67,10 +67,9 @@ const Regulations = () => {
   return (
     <Page>
       <BackgroundImage />
-      <Typography color="textPrimary" align="center" variant="h3" gutterBottom>
-        Graveyard regulations
-      </Typography>
-      <TableContainer>
+      <h2 style={{display:'table', padding:'10px', backgroundColor: 'rgba(104, 76, 172, 0.9)', color:'#FFF', margin: '0px auto 0px auto' }}>Regulations</h2>
+      
+      <TableContainer style={{marginTop: '40px'}}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>

@@ -102,7 +102,7 @@ const Nav = () => {
               <Link color="textPrimary" to="/masonry" className={classes.link}>Eden</Link>
               <Link color="textPrimary" to="/pit" className={classes.link}>Inferno</Link>
               <Link color="textPrimary" to="/regulations" className={classes.link}>Regulations</Link>
-              <a href="https://docs.DANTE.finance" className={classes.link}>Docs</a>
+              <a href="https://dantefinance.gitbook.io/dantefinance.com/" className={classes.link}>Docs</a>
             </Box>
             <AccountButton text="Connect" />
           </>
@@ -144,7 +144,7 @@ const Nav = () => {
                 <ListItemLink primary="Masonry" to="/masonry" />
                 <ListItemLink primary="Pit" to="/pit" />
                 <ListItemLink primary="Regulations" to="/regulations" />
-                <ListItem button component="a" href="https://docs.DANTE.finance">
+                <ListItem button component="a" href="https://dantefinance.gitbook.io/dantefinance.com/">
                   <ListItemText>Docs</ListItemText>
                 </ListItem>
                 <ListItem style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
