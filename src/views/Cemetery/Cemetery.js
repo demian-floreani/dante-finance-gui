@@ -39,7 +39,9 @@ const Cemetery = () => {
               
               <Box mt={5}>
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 2).length === 0}>
-                  <h4 style={{display:'table', padding:'10px', backgroundColor: 'rgba(104, 76, 172, 0.9)', color:'#FFF', margin: '0px auto 0px auto' }}>Earn Grail by staking LP</h4>
+                  <h4 style={{display:'table', padding:'10px', backgroundColor: 'rgba(104, 76, 172, 0.9)', color:'#FFF', margin: '0px auto 0px auto' }}>
+                    Earn Grail by staking liquidity
+                  </h4>
                   
                   <Grid container spacing={3} style={{marginTop: '10px', marginBottom: '10px'}}>
                     {activeBanks
