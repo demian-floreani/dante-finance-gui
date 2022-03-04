@@ -10,16 +10,16 @@ import tBondLogo from '../../assets/img/crypto_tomb_bond.svg';
 import tombFtmLpLogo from '../../assets/img/tomb_ftm_lp.png';
 import tshareFtmLpLogo from '../../assets/img/tshare_ftm_lp.png';
 
-import wftmLogo from '../../assets/img/fantom-ftm-logo.png';
-import usdcLogo from '../../assets/img/USDC.svg';
+import wftmLogo from '../../assets/img/fantom.png';
+import usdcLogo from '../../assets/img/USDC.png';
 import zooLogo from '../../assets/img/zoo_logo.svg';
 import shibaLogo from '../../assets/img/shiba_logo.svg';
 
 import danteLogo from '../../assets/img/dante.svg';
 import grailLogo from '../../assets/img/grail.svg';
 import dbondLogo from '../../assets/img/dbond.svg';
-import danteTombLpLogo from '../../assets/img/dante_tomb.svg';
-import grailFtmLpLogo from '../../assets/img/grail_ftm.svg';
+import danteTombLpLogo from '../../assets/img/dante_tomb.png';
+import grailFtmLpLogo from '../../assets/img/grail_fantom.png';
 import danteGrailLpLogo from '../../assets/img/dante_grail.svg';
 import danteLogoPNG from '../../assets/img/dante_500x500.png';
 

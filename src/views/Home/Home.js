@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import Page from '../../components/Page';
-import HomeImage from '../../assets/img/HOME1900x1080.png';
+import HomeImage from '../../assets/img/home.png';
 import CashImage from '../../assets/img/dante.svg';
 import Image from 'material-ui-image';
 import { createGlobalStyle } from 'styled-components';
@@ -15,6 +15,7 @@ import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
 import usetShareStats from '../../hooks/usetShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
+import useFetchGenesisStartTime from '../../hooks/useFetchGenesisStartTime';
 import { Dante as tombTesting, Grail as tShareTesting } from '../../tomb-finance/deployments/deployments.testing.json';
 import { Dante as tombProd, Grail as tShareProd } from '../../tomb-finance/deployments/deployments.testing.json';
 
@@ -131,6 +132,11 @@ const Home = () => {
     />,
   );
 
+  const timestamp = useFetchGenesisStartTime();
+  //const timestamp = 1646505295;
+  var countDownDate = new Date(timestamp * 1000);
+  let genesisStarted = Date.now() > (timestamp * 1000);
+
   return (
     <Page>
       <BackgroundImage />
@@ -145,17 +151,19 @@ const Home = () => {
           <Paper className='danteCard'>
             <Box p={4}>
               <h2>Welcome to Dante Finance</h2>
-              <p>Join Dante's epic journey from Inferno to Eden. $DANTE is a new token pegged to $TOMB with future NFT utility.</p>
-              <p>Stake your GRAIL in Eden to earn inflationary DANTE rewards or provide liquidity on pairs and start earning today!</p>
+              <p>Join Dante's epic journey from Inferno to Eden. Dante is a new token pegged to Tomb with future NFT utility.</p>
+              <p>Stake your Grail in Eden to earn inflationary Dante rewards or provide liquidity on pairs and start earning today!</p>
+              
+              {!genesisStarted ? ( <><br/><LaunchCountdown deadline={countDownDate}></LaunchCountdown></> ) : <></>}
             </Box>
           </Paper>
         </Grid>
 
         <Grid container spacing={3}>
           <Grid item  xs={12} sm={12} justify="center"  style={{ margin: '12px', display: 'flex' }}>
-          <Alert variant="filled" severity="warning">
-              <b>Please visit our <a target="_blank" href="https://dantefinance.gitbook.io/dantefinance.com/">documentation</a> before purchasing DANTE or GRAILs!</b>
-          </Alert>
+            <Alert variant="filled" severity="warning">
+                <b>Please visit our <a target="_blank" href="https://dantefinance.gitbook.io/dantefinance.com/">documentation</a> before purchasing Dante or Grail!</b>
+            </Alert>
           </Grid>
         </Grid>
 
@@ -175,11 +183,11 @@ const Home = () => {
             <CardContent align="center" style={{ marginTop: '2.5%' }}>
               <Button 
                 color="primary" 
-                href="/masonry" 
+                href="/eden" 
                 variant="contained" 
                 style={{ marginRight: '10px' }}>Stake Now</Button>
               <Button 
-                href="/cemetery" 
+                href="/purgatory" 
                 variant="contained" 
                 className={classes.button} 
                 style={{ marginRight: '10px' }}>Farm Now</Button>
@@ -216,7 +224,7 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card className='danteCard'>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h4>1 DANTE</h4>
+              <h4>1 Dante</h4>
               <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('DANTE');
@@ -235,7 +243,7 @@ const Home = () => {
                 <span style={{ fontSize: '40px' }}>=</span>
               </Box>
               <Box mt={0}>
-                <span style={{ fontSize: '30px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.--'} TOMB</span>
+                <span style={{ fontSize: '24px' }}>{tombPriceInFTM ? tombPriceInFTM : '-.--'} Tomb</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px', alignContent: 'flex-start' }}>
@@ -255,7 +263,7 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card className='danteCard'>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h4>1 GRAIL</h4>
+              <h4>1 Grail</h4>
               <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('GRAIL');
@@ -274,7 +282,7 @@ const Home = () => {
                 <span style={{ fontSize: '40px' }}>=</span>
               </Box>
               <Box>
-                <span style={{ fontSize: '30px' }}>{tSharePriceInFTM ? tSharePriceInFTM : '-.--'} FTM</span>
+                <span style={{ fontSize: '24px' }}>{tSharePriceInFTM ? tSharePriceInFTM : '-.--'} Ftm</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px' }}>${tSharePriceInDollars ? tSharePriceInDollars : '-.--'}</span>
@@ -292,7 +300,7 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card className='danteCard'>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h4>1 DBOND</h4>
+              <h4>1 Dbond</h4>
               <Button
                 onClick={() => {
                   tombFinance.watchAssetInMetamask('DBOND');
@@ -311,7 +319,7 @@ const Home = () => {
                 <span style={{ fontSize: '40px' }}>=</span>
               </Box>
               <Box>
-                <span style={{ fontSize: '30px' }}>{tBondPriceInFTM ? tBondPriceInFTM : '-.--'} TOMB</span>
+                <span style={{ fontSize: '24px' }}>{tBondPriceInFTM ? tBondPriceInFTM : '-.--'} Tomb</span>
               </Box>
               <Box>
                 <span style={{ fontSize: '16px' }}>${tBondPriceInDollars ? tBondPriceInDollars : '-.--'}</span>
@@ -328,14 +336,13 @@ const Home = () => {
         <Grid item xs={12} sm={6}>
           <Card className='danteCard'>
             <CardContent align="center">
-              <h4>DANTE-TOMB Spooky LP</h4>
+              <h4>Dante-Tomb Spooky LP</h4>
               <Box mt={2}>
                 <TokenSymbol symbol="DANTE-TOMB-LP" />
               </Box>
               <Box mt={2}>
-                <span style={{ fontSize: '26px' }}>
-                  {tombLPStats?.tokenAmount ? tombLPStats?.tokenAmount : '-.--'} TOMB /{' '}
-                  {tombLPStats?.ftmAmount ? tombLPStats?.ftmAmount : '-.--'} FTM
+                <span style={{ fontSize: '24px' }}>
+                  {tombLPStats?.tokenAmount ? tombLPStats?.tokenAmount : '-.--'} Dante / {tombLPStats?.ftmAmount ? tombLPStats?.ftmAmount : '-.--'} Tomb
                 </span>
               </Box>
               <Box>
@@ -356,14 +363,14 @@ const Home = () => {
         <Grid item xs={12} sm={6}>
           <Card className='danteCard'>
             <CardContent align="center">
-              <h4>GRAIL-FTM Spooky LP</h4>
+              <h4>Grail-Ftm Spooky LP</h4>
               <Box mt={2}>
                 <TokenSymbol symbol="GRAIL-FTM-LP" />
               </Box>
               <Box mt={2}>
-                <span style={{ fontSize: '26px' }}>
-                  {tshareLPStats?.tokenAmount ? tshareLPStats?.tokenAmount : '-.--'} TSHARE /{' '}
-                  {tshareLPStats?.ftmAmount ? tshareLPStats?.ftmAmount : '-.--'} FTM
+                <span style={{ fontSize: '24px' }}>
+                  {tshareLPStats?.tokenAmount ? tshareLPStats?.tokenAmount : '-.--'} Grail /{' '}
+                  {tshareLPStats?.ftmAmount ? tshareLPStats?.ftmAmount : '-.--'} Ftm
                 </span>
               </Box>
               <Box>

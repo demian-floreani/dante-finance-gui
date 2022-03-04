@@ -4,7 +4,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 import Page from '../../components/Page';
-import RegulationsImage from '../../assets/img/HOME1900x1080.png';
+import RegulationsImage from '../../assets/img/home.png';
 import { createGlobalStyle } from 'styled-components';
 import useTombFinance from '../../hooks/useTombFinance';
 

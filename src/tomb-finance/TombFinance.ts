@@ -112,8 +112,10 @@ export class TombFinance {
 
     const tombInUSD = await this.getTOMBPriceInDollars();
     
+    const fixed = priceofDanteInTomb.toFixed(2);
+
     return {
-      tokenInFtm: priceofDanteInTomb.toFixed(2),
+      tokenInFtm: fixed,
       priceInDollars: (priceofDanteInTomb * tombInUSD).toFixed(2),
       totalSupply: getDisplayBalance(supply, this.DANTE.decimal, 0),
       circulatingSupply: getDisplayBalance(tombCirculatingSupply, this.DANTE.decimal, 0),
@@ -406,8 +408,8 @@ export class TombFinance {
    */
   async buyBonds(amount: string | number): Promise<TransactionResponse> {
     const { Treasury } = this.contracts;
-    const treasuryTombPrice = await Treasury.getTombPrice();
-    return await Treasury.buyBonds(decimalToBalance(amount), treasuryTombPrice);
+    const treasuryDantePrice = await Treasury.getDantePrice();
+    return await Treasury.buyBonds(decimalToBalance(amount), treasuryDantePrice);
   }
 
   /**
@@ -416,8 +418,8 @@ export class TombFinance {
    */
   async redeemBonds(amount: string): Promise<TransactionResponse> {
     const { Treasury } = this.contracts;
-    const priceForTomb = await Treasury.getTombPrice();
-    return await Treasury.redeemBonds(decimalToBalance(amount), priceForTomb);
+    const priceForDante = await Treasury.getDantePrice();
+    return await Treasury.redeemBonds(decimalToBalance(amount), priceForDante);
   }
 
   async getTotalValueLocked(): Promise<Number> {
