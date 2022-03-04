@@ -134,7 +134,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   },
   GrailWFTMLPGrailRewardPool: {
     identifier: 'GrailWFTMLPGrailRewardPool',
-    name: 'Earn Grail by Grail-WFTM LP',
+    name: 'Earn Grail by Grail-Ftm LP',
     poolId: 1,
     sectionInUI: 2,
     contract: 'GrailRewardPool',

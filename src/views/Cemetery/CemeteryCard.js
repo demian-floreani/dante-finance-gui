@@ -26,7 +26,7 @@ const CemeteryCard = ({ bank }) => {
               </Grid>
 
               <Grid item>
-                <Button color='primary' size="small" variant="contained" component={Link} to={`/cemetery/${bank.identifier}`}>
+                <Button color='primary' size="small" variant="contained" component={Link} to={`/purgatory/${bank.identifier}`}>
                   View
                 </Button>
               </Grid>
