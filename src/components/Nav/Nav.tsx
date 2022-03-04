@@ -98,9 +98,9 @@ const Nav = () => {
               <Link to="/" color="inherit" className={classes.brandLink}>Dante Finance</Link>
             </Typography>
             <Box mr={5}>
-              <Link color="textPrimary" to="/cemetery" className={classes.link}>Purgatory</Link>
-              <Link color="textPrimary" to="/masonry" className={classes.link}>Eden</Link>
-              <Link color="textPrimary" to="/pit" className={classes.link}>Inferno</Link>
+              <Link color="textPrimary" to="/purgatory" className={classes.link}>Purgatory</Link>
+              <Link color="textPrimary" to="/eden" className={classes.link}>Eden</Link>
+              <Link color="textPrimary" to="/inferno" className={classes.link}>Inferno</Link>
               <Link color="textPrimary" to="/regulations" className={classes.link}>Regulations</Link>
               <a href="https://dantefinance.gitbook.io/dantefinance.com/" className={classes.link}>Docs</a>
             </Box>
