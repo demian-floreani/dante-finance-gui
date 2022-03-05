@@ -1,6 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import Kyc from '../../assets/img/kyc.png';
+
 import {
   AppBar,
   Box,
@@ -96,6 +98,7 @@ const Nav = () => {
           <>
             <Typography variant="h2" color="inherit" noWrap className={classes.toolbarTitle}>
               <Link to="/" color="inherit" className={classes.brandLink}>Dante Finance</Link>
+              <a style={{marginLeft: '20px'}} target='_blank' href='https://twitter.com/0xGuard/status/1499422602179317764'><img src={Kyc}></img></a>
             </Typography>
             <Box mr={5}>
               <Link color="textPrimary" to="/purgatory" className={classes.link}>Purgatory</Link>

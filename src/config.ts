@@ -64,7 +64,7 @@ export const bankDefinitions: { [contractName: string]: BankInfo } = {
   */
   WFTMDanteRewardPool: {
     identifier: 'WFTMDanteRewardPool',
-    name: 'Earn Dante by WFTM',
+    name: 'Earn Dante by WFtm',
     poolId: 0,
     sectionInUI: 0,
     contract: 'DanteRewardPool',
